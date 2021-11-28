@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-import pyperclip
+
 
 def count_totals(file):
     total = 0
@@ -32,8 +32,16 @@ with open (sys.argv[1]) as f:
         pass
     (completed_long, total_long) = count_totals(f)
     (completed_short, total_short) = count_totals(f)
-    score_string = create_score_string(completed_long, total_long, completed_short, total_short)
-    print("--------------")
-    print ( score_string )
+
+score_string = create_score_string(completed_long, total_long, completed_short, total_short)
+print("--------------")
+print ( score_string )
+try:
+    import pyperclip
     pyperclip.copy(score_string)
+except Exception as e:
+    print ( "--------------\nAll done! Just copy and paste!\n(If you install pyperclip with pip, your results will be automatically copied to your clipboard next time!)" )
+else:
     print ( "--------------\nGood news! Your string has already been copied to your clipboard! Just paste!" )
+
+
