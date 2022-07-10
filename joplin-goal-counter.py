@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 import sys
 
+##TODO
+
+# Add strikethroughs
+# Add support for more than two sections
+# Handle end of section better
+# Handle end of file better
+# Add support for custom weights
+# Add comments
+
 
 def count_totals(file):
     total = 0
