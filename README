@@ -1,1 +1,25 @@
-This is more of a personal tool for counting how well I how well I followed my weekly schedule. Basically counts the number of checked and unchecked checkmarks in two of the file's subsections. Works specifically for the type of formatting I follow in my files and doubt it will be useful to anyone else. 
+This is more of a personal tool for counting how well I how well I followed my weekly schedule.
+Basically counts the number of checked and unchecked checkmarks in two of the file's subsections.
+Works specifically for the type of formatting I follow in my files and doubt it will be useful to anyone else.
+
+
+
+## General Syntax
+"______" (six underscores) denote file end. Nothing after that will be counted
+Each section starts with a "# " (a markdown heading).
+
+## Weights
+Each section can have custom weights.
+To add specific weights to a section, include "(=5pts)" somewhere in the section header,
+but replace the 5 with a desired weight (can use multiple digits)
+The default weight, if none is included is 1
+
+## Scoring
+Every line starting with an empty markdown checkmark "- [ ] " is counted as a task attempted
+but not completed. (Notice the space before the brackets, inside the brackets, and after the brackets)
+
+Every line starting with an filed markdown checkmark "- [x] " is counted as a task successfully completed.
+(Notice the space before the brackets, no spaces inside the brackets, and space after the brackets)
+
+If you include a html strike-through tag right after the markdown checkmark "- [ ] <s>",
+then the task will not be counted at all.

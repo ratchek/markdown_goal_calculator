@@ -1,48 +1,65 @@
 #!/usr/bin/env python3
 import sys
-
-##TODO
-
-# Add strikethroughs
-# Add support for more than two sections
-# Handle end of section better
-# Handle end of file better
-# Add support for custom weights
-# Add comments
+import re
 
 
-def count_totals(file):
-    total = 0
-    completed = 0
-    while (True):
-        line = f.readline()
-        if line == "\n":
-            pass
-        elif line[0:6] == "- [ ] ":
-            total += 1
-        elif line[0:6] == "- [x] ":
-            total += 1
-            completed += 1
-        else:
-            return (completed, total)
+END_OF_GOALS = "\n______\n"
+NEW_SECTION = "\n# "
 
-def create_score_string(lc, la, sc, sa,):
-    score_string = '''Score = %d%%
-%d*3 + %d*1 = %d
-%d*3 + %d*1 = %d'''
-    total_completed = 3 * lc + 1 * sc
-    total_attempted = 3 * la + 1 * sa
-    percentage = 100 * total_completed / total_attempted
-    return score_string%(percentage, lc, sc, total_completed, la, sa, total_attempted)
+def get_weights(header):
+    weights_substring = re.findall("\(=\d+pts\)", header)
+    if (len(weights_substring) == 0):
+        weights = 1
+    elif (len(weights_substring) == 1):
+        weights = int( re.findall("\d+", weights_substring[0])  [0] )
+    else:
+        raise Exception("You can only assign one weight per section")
+    return weights
+
+def score_section(section):
+    weight = get_weights(section[0])
+    attempted_tasks = 0
+    completed_tasks = 0
+    for line in section:
+        if line[0:6] == "- [ ] " and line[6:9] != "<s>":
+            attempted_tasks += 1
+        elif line[0:6] == "- [x] " and  line[6:9] != "<s>":
+            attempted_tasks += 1
+            completed_tasks += 1
+    return {"weight": weight, "attempted_tasks":attempted_tasks, "completed_tasks":completed_tasks}
+
+def create_score_string(scores):
+    completed_string = ""
+    attempted_string = ""
+    completed_total = 0
+    attempted_total = 0
+    for section in scores:
+        completed_total += section["completed_tasks"] * section["weight"]
+        attempted_total += section["attempted_tasks"] * section["weight"]
+        completed_string += "%d*%d + "%(section["completed_tasks"], section["weight"])
+        attempted_string += "%d*%d + "%(section["attempted_tasks"], section["weight"])
+
+    completed_string = completed_string[0:-2] + "= %d"%(completed_total)
+    attempted_string = attempted_string[0:-2] + "= %d"%(attempted_total)
+
+    percentage_string = "Score = %d%%"%(100 * completed_total / attempted_total)
+    return percentage_string + "\n" + completed_string +  "\n" + attempted_string
 
 
 with open (sys.argv[1]) as f:
-    while (f.readline()[:7] != "## Long"):
-        pass
-    (completed_long, total_long) = count_totals(f)
-    (completed_short, total_short) = count_totals(f)
+    goals = f.read()
 
-score_string = create_score_string(completed_long, total_long, completed_short, total_short)
+# Delete anything after a line containing 6 underscores
+goals = goals.split(END_OF_GOALS)[0]
+# Split into sections
+goals = goals.split(NEW_SECTION)
+# Split into lines
+goals = [section.split("\n") for section in goals]
+
+# Get scores for each section
+scores = [score_section(section) for section in goals]
+score_string = create_score_string(scores)
+
 print("--------------")
 print ( score_string )
 try:
@@ -52,5 +69,3 @@ except Exception as e:
     print ( "--------------\nAll done! Just copy and paste!\n(If you install pyperclip with pip, your results will be automatically copied to your clipboard next time!)" )
 else:
     print ( "--------------\nGood news! Your string has already been copied to your clipboard! Just paste!" )
-
-
