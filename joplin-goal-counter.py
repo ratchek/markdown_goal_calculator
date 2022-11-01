@@ -36,8 +36,8 @@ def create_score_string(scores):
     for section in scores:
         completed_total += section["completed_tasks"] * section["weight"]
         attempted_total += section["attempted_tasks"] * section["weight"]
-        completed_string += "%d*%d + "%(section["completed_tasks"], section["weight"])
-        attempted_string += "%d*%d + "%(section["attempted_tasks"], section["weight"])
+        completed_string += "%d * %d + "%(section["completed_tasks"], section["weight"])
+        attempted_string += "%d * %d + "%(section["attempted_tasks"], section["weight"])
 
     completed_string = completed_string[0:-2] + "= %d"%(completed_total)
     attempted_string = attempted_string[0:-2] + "= %d"%(attempted_total)
