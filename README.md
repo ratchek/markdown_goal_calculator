@@ -6,22 +6,22 @@ Works specifically for the type of formatting I follow in my files and doubt it 
 `python markdown-goal-calculator.py name-of-text-file-with-goals`
 
 ## General Syntax
-"______" (six underscores) denote file end. Nothing after that will be counted
+"______" (six underscores) denote file end. Nothing after that will be counted.
 
 Each section starts with a "# " (a markdown heading).
 
 ## Weights
 Each section can have custom weights.
 To add specific weights to a section, include "(=5pts)" somewhere in the section header,
-but replace the 5 with a desired weight (can use multiple digits)
-The default weight, if none is included is 1
+but replace the 5 with a desired weight (can use multiple digits).
+The default weight, if none is included is 1.
 
 ## Scoring
 Every line starting with an empty markdown checkmark "- [ ] " is counted as a task attempted
-but not completed. (Notice the space before the brackets, inside the brackets, and after the brackets)
+but not completed. (Notice the space before the brackets, inside the brackets, and after the brackets).
 
 Every line starting with an filed markdown checkmark "- [x] " is counted as a task successfully completed.
-(Notice the space before the brackets, no spaces inside the brackets, and space after the brackets)
+(Notice the space before the brackets, no spaces inside the brackets, and space after the brackets).
 
 If you include a html strike-through tag right after the markdown checkmark "- [ ] \<s>",
 then the task will not be counted at all.
