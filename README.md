@@ -23,5 +23,5 @@ but not completed. (Notice the space before the brackets, inside the brackets, a
 Every line starting with an filed markdown checkmark "- [x] " is counted as a task successfully completed.
 (Notice the space before the brackets, no spaces inside the brackets, and space after the brackets)
 
-If you include a html strike-through tag right after the markdown checkmark "- [ ] <s>",
+If you include a html strike-through tag right after the markdown checkmark "- [ ] \<s>",
 then the task will not be counted at all.
