@@ -25,3 +25,7 @@ Every line starting with an filed markdown checkmark "- [x] " is counted as a ta
 
 If you include a html strike-through tag right after the markdown checkmark "- [ ] \<s>",
 then the task will not be counted at all.
+
+## pyperclip
+If you have pyperclip installed (you can get it with pip), then the results of the calculation will be automatically
+added to your system's clipboard, so you can just paste them wherever you'd like.
