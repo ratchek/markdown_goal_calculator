@@ -1,0 +1,25 @@
+# Short (=1pts)
+Lines that don't start with checkmarks are ignored
+- [ ] Lines with unmarked checkmark boxes are considered unfinished
+- [ ] this is also unfinished
+- [x] this is considered as a completed task
+- [x] also completed
+- [x] each of the tasks in these section have a weight of 1
+
+# Large (=5pts)
+- [ ] both finished and unfinished tasks in this secion are weighted as 5pts
+- [x] a finished task
+## A subsections
+- [x] subsections cannot have separate weights
+- [ ] they inherit weights from the parent section
+
+# A section with no pts
+- [ ] This will automatically be weighted as 1 point if the section doesn't have any weighting specified
+
+# Strikethrough(=12pts)
+- [ ] <s> If a checkmark box if immediately followed by a markdown strikethrough character, it will not be counted </s>
+- [x] <s> it doesn't matter if it is marked as completed or not. </s>
+______
+# A section that will not be counted (=3pts)
+- [x] 6 underscores denote end of file
+- [ ] Anything following 6 underscores will not count
