@@ -60,12 +60,12 @@ goals = [section.split("\n") for section in goals]
 scores = [score_section(section) for section in goals]
 score_string = create_score_string(scores)
 
-print("--------------")
+print("______")
 print ( score_string )
 try:
     import pyperclip
     pyperclip.copy(score_string)
 except Exception as e:
-    print ( "--------------\nAll done! Just copy and paste!\n(If you install pyperclip with pip, your results will be automatically copied to your clipboard next time!)" )
+    print ( "______\nAll done! Just copy and paste!\n(If you install pyperclip with pip, your results will be automatically copied to your clipboard next time!)" )
 else:
-    print ( "--------------\nGood news! Your string has already been copied to your clipboard! Just paste!" )
+    print ( "______\nGood news! Your string has already been copied to your clipboard! Just paste!" )
